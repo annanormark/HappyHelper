@@ -1,6 +1,8 @@
 package com.mikaela.hhtimer;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,11 +16,11 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
     static boolean active = false;
     private long newT = 16000;
     private long newTR = 80000;
-    private long AmountT = 2000*60*60; //2h
+    private long AmountT = 2000*60*60;
     public int timeSpended = 0;
     GifView gifView;
     Button menubtn;
-
+    String MyPrefrences = "TimerValues";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +28,11 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
         setContentView(R.layout.activity_main);
 
         /**** Get the time set in Timer-menu ****/
-        Bundle Intent = getIntent().getExtras();
-        if(Intent != null) {
-            newT = Intent.getLong("Milli");
-            newTR = Intent.getLong("MilliR");
-            AmountT = Intent.getLong("Amount");
+        SharedPreferences sharedpreferences = getSharedPreferences(MyPrefrences, Context.MODE_PRIVATE);
+        if( sharedpreferences != null) {
+            newT = sharedpreferences.getLong("studySession", 50 * 60000);
+            newTR = sharedpreferences.getLong("breakSession", 10 * 60000);
+            AmountT = sharedpreferences.getLong("totalTime", 120 * 60000);
         }
 
         /**** Makes the happy helper and the timer ****/
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
                 Intent intent = new Intent(MainActivity.this, Menu.class);
                 startActivity(intent);
             }
-
         });
 
     }

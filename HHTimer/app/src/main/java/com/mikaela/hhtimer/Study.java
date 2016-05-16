@@ -20,6 +20,7 @@ public class Study extends Fragment {
     Button start;
     TextView text;
     long startT = 0;
+    String MyPrefrences = "TimerValues";
 
 public interface OnFragmentInteractionListener{
         public Long getTime();
@@ -40,26 +41,14 @@ public interface OnFragmentInteractionListener{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-     /*   //1
-      Intent i = getIntent();
-        long intValue = i.getIntExtra("Minutes", 0);
-        intValue = startT;
-
-        //2
-        Bundle savedInstanceState) {
-            String strtext = getArguments().getString("edttext");
-            return inflater.inflate(R.layout.fragment, container, false);
-*/
-
-
         View view = inflater.inflate(R.layout.studytime, container, false);
 
         start = (Button) view.findViewById(R.id.RedButton);
         text = (TextView) view.findViewById(R.id.RedTextTime);
        // start.setVisibility(View.INVISIBLE);
 
-       long minutes = (int) ((startT / (1000*60)) % 60);
-        long seconds = (int) (startT / 1000) % 60 ;
+      // long minutes = (int) ((startT / (1000*60)) % 60);
+       // long seconds = (int) (startT / 1000) % 60 ;
 
         startT = Lis.getTime();
         //text.setText("0" + minutes + ":0" + seconds);

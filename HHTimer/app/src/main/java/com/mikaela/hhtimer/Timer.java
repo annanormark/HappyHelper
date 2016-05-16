@@ -1,6 +1,8 @@
 package com.mikaela.hhtimer;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.lang.String;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -20,6 +25,7 @@ public class Timer extends AppCompatActivity  {
     SeekBar breakSession;
     SeekBar totalTime;
     private GoogleApiClient client;
+    String MyPrefrences = "TimerValues";
 
 
     @Override
@@ -28,15 +34,15 @@ public class Timer extends AppCompatActivity  {
 
         setContentView(R.layout.timer);
 
-        /*       final EditText minutesOfTimer = (EditText) findViewById(R.id.newT);
-        final EditText minutesOfRest = (EditText) findViewById(R.id.restText);
-        final EditText minutesAmount = (EditText) findViewById(R.id.Amount);*/
         studySession = (SeekBar) findViewById(R.id.StudyTime);
         breakSession = (SeekBar) findViewById(R.id.PauseTime);
         totalTime = (SeekBar) findViewById(R.id.TotalTime);
+        SharedPreferences sharedpreferences = getSharedPreferences(MyPrefrences, Context.MODE_PRIVATE);
+
         final TextView studyNumber = (TextView) findViewById(R.id.StudySNumber);
         final TextView breakNumber = (TextView) findViewById(R.id.BreakSNumber);
         final TextView totalNumber = (TextView) findViewById(R.id.StudyNumber);
+        final SharedPreferences.Editor edit = sharedpreferences.edit();
 
 
         studySession.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -93,11 +99,19 @@ public class Timer extends AppCompatActivity  {
 
             @Override
             public void onClick(View v) {
+                String studyString = studyNumber.getText().toString();
+                long sst = Long.parseLong(studyString.substring(0, studyString.length() - 4)) * 60000 + 1000;
+                String breakString = breakNumber.getText().toString();
+                long bst = Long.parseLong(breakString.substring(0, studyString.length() - 4)) * 60000 + 1000;
+                String totaltString = totalNumber.getText().toString();
+                long tt = Long.parseLong(totaltString.substring(0, studyString.length() - 4)) * 60000 + 1000;
+
+                edit.putLong("studySession", sst);
+                edit.putLong("breakSession", bst);
+                edit.putLong("totalTime", tt);
+                edit.commit();
 
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                i.putExtra("Milli", setTime);
-                i.putExtra("MilliR", setRest);
-                i.putExtra("Amount", setAm);
                 startActivity(i);
             }
 
