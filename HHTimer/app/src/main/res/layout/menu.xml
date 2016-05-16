@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECECEC"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Menu"
+        android:textSize="50dp"
+        android:fontFamily="sans-serif-thin"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.09"
+        android:textColor="#E8777D"
+        android:layout_marginTop="15dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Applications"
+        android:id="@+id/AppBtn"
+        android:textSize="50dp"
+        android:fontFamily="sans-serif-thin"
+        android:layout_weight="0.09"
+        android:background="#ECECEC"
+        android:textColor="#3D3F40"
+        android:textAllCaps="false"
+        android:stateListAnimator="@null"/>
+
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/l1"
+        android:background="#8AE5C5" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calendar"
+        android:id="@+id/CalendarBtn"
+        android:textSize="50dp"
+        android:fontFamily="sans-serif-thin"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.09"
+        android:background="#ECECEC"
+        android:textColor="#3D3F40"
+        android:textAllCaps="false"
+        android:stateListAnimator="@null"/>
+
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/surfaceView"
+        android:background="#8AE5C5" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Timer"
+        android:textSize="50dp"
+        android:fontFamily="sans-serif-thin"
+        android:id="@+id/TimerBtn"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.09"
+        android:background="#ECECEC"
+        android:textColor="#3D3F40"
+        android:textAllCaps="false"
+        android:stateListAnimator="@null"/>
+
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/surfaceView2"
+        android:background="#8AE5C5" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About"
+        android:textSize="50dp"
+        android:fontFamily="sans-serif-thin"
+        android:id="@+id/Aboutbtn"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.09"
+        android:background="#ECECEC"
+        android:textColor="#3D3F40"
+        android:textAllCaps="false"
+        android:stateListAnimator="@null"/>
+
+</LinearLayout>

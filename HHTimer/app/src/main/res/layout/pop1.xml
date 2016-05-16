@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Tip! Try studying for a few minutes right before you sleep. During sleep, the brain strengthens new memories, so there’s a good chance you’ll remember whatever you review right before dozing off."
+        android:id="@+id/textView6"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#3D3F40"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
+
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="180dp"
+        android:src="@drawable/bed"
+        android:id="@+id/imageView"
+        style="center"
+        android:foregroundGravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:id="@+id/okbtn"
+        android:layout_below="@+id/textView6"
+        android:layout_centerHorizontal="true"
+        android:textColor="#E8777D"
+        android:background="#FFFFFF"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="20dp"
+        android:stateListAnimator="@null"/>
+
+
+</RelativeLayout>

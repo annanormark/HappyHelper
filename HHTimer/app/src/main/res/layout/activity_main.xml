@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mikaela.cd.MainActivity"
+    android:background="#ECECEC"
+    android:id="@+id/mainContainer">
+
+    <com.mikaela.hhtimer.GifView
+       android:id="@+id/gif_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="82dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"></com.mikaela.hhtimer.GifView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="HappyHelper"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#8AE5C5"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="30dp"
+        android:layout_marginLeft="10dp"
+        android:shadowDx="0.0"
+        android:shadowDy="0.0"
+        android:shadowRadius="0.0"
+        android:layout_marginTop="5dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:id="@+id/menubtn"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="#ECECEC"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#E8777D"
+        android:textSize="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:textAllCaps="false"/>
+
+
+</RelativeLayout>
+

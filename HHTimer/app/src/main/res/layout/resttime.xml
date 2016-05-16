@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.mikaela.cd.MainActivity">
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="START"
+        android:id="@+id/startBtn"
+        android:background="#B8F5DF"
+        android:ellipsize="middle"
+        android:layout_alignTop="@+id/textTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/textTime"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="80dp"
+        android:textColor="#3D3F40" />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="00:00"
+        android:id="@+id/textTime"
+        android:textSize="100dp"
+        android:textColor="#3D3F40"
+        android:layout_marginBottom="50dp"
+        android:foregroundGravity="center"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:gravity="center"
+        android:background="#B8F5DF" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Break time!"
+        android:fontFamily="sans-serif-thin"
+        android:id="@+id/textView"
+        android:textColor="#3D3F40"
+        android:textSize="20dp"
+        android:paddingLeft="10dp"
+        android:layout_above="@+id/startBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

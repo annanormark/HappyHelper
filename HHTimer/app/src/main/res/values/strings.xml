@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HHTimer</string>
+    <string name="time">00:00</string>
+    <string name="setTimer"></string>
+    <string name="title_activity_calendar">Calendar</string>
+    <string name="title_activity_make_dead_line">makeDeadLine</string>
+</resources>
