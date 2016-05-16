@@ -26,7 +26,6 @@ public class makeDeadLine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_dead_line);
 
-        deadLineTime = (EditText) findViewById(R.id.timeOfDead);
         titleOfAssignment = (EditText) findViewById(R.id.titleOfAss);
         amountTime = (EditText) findViewById(R.id.amountTime);
         amountHP = (EditText) findViewById(R.id.amountHP);

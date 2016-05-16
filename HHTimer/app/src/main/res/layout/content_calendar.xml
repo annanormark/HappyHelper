@@ -11,7 +11,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.mikaela.hhtimer.Calendar"
     tools:showIn="@layout/activity_calendar"
-    android:background="#ffffff">
+    android:background="#ECECEC">
 
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,15 +20,17 @@
         android:layout_height="250dp"
         app:compactCalendarTargetHeight="250dp"
         app:compactCalendarTextSize="12sp"
-        app:compactCalendarBackgroundColor="#ffffff"
-        app:compactCalendarTextColor="#000000"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
-        app:compactCalendarCurrentDayBackgroundColor="#33CCCC"
+        app:compactCalendarBackgroundColor="#ECECEC"
+        app:compactCalendarTextColor="#3D3F40"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="#E8777D"
+        app:compactCalendarCurrentDayBackgroundColor= "#8AE5C5"
 
         android:layout_marginTop="19dp"
         android:layout_below="@+id/annasText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="#ECECEC"
+        android:fontFamily="sans-serif-thin"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,18 +40,35 @@
         android:id="@+id/annasText"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="#000000" />
+        android:textColor="#3D3F40"
+        android:fontFamily="sans-serif-thin"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Deadline"
+        android:text="Add new deadline"
         android:id="@+id/annasButton"
         android:onClick="addDeadLine"
         android:clickable="true"
+        android:textColor="#E8777D"
+        android:background="#ECECEC"
+        android:stateListAnimator="@null"
+        android:textSize="20dp"
+        android:fontFamily="sans-serif-thin"
         android:layout_below="@+id/Cal"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/surfaceView5"
+        android:background="#8AE5C5"
+        android:layout_above="@+id/eventList"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -57,6 +76,10 @@
         android:id="@+id/eventList"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/annasButton" />
+        android:layout_below="@+id/annasButton"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#3D3F40"
+        android:layout_margin="5dp" />
 
 </RelativeLayout>

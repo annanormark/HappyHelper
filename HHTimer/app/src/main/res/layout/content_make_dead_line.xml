@@ -10,33 +10,44 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.mikaela.hhtimer.makeDeadLine"
-    tools:showIn="@layout/activity_make_dead_line">
+    tools:showIn="@layout/activity_make_dead_line"
+    android:background="#ECECEC">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:text="Date"
         android:id="@+id/DateText"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp" />
+        android:layout_marginTop="23dp"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#E8777D"
+        android:textSize="50dp"/>
 
     <EditText
-        android:layout_width="200dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/titleOfAss"
+        android:fontFamily="sans-serif-thin"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/timeOfDead"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:inputType="datetime" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#3D3F40"
+        android:layout_marginBottom="15dp"
+        android:background="#ECECEC" />
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/l1"
+        android:background="#8AE5C5"
+        android:layout_alignBottom="@+id/titleOfAss"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,20 +55,13 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Name of assignment"
         android:id="@+id/textView2"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#3D3F40"
+        android:layout_marginTop="33dp"
+        android:textSize="30dp"
         android:layout_below="@+id/DateText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Time of deadline"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/titleOfAss"
-        android:layout_alignRight="@+id/DateText"
-        android:layout_alignEnd="@+id/DateText"
-        android:layout_marginTop="32dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -65,12 +69,23 @@
         android:inputType="time"
         android:ems="10"
         android:id="@+id/amountTime"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="40dp"
+        android:background="#ECECEC"
         android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="19dp"
-        android:layout_toLeftOf="@+id/DateText"
-        android:layout_toStartOf="@+id/DateText" />
+        android:textColor="#3D3F40"
+        android:layout_marginBottom="15dp" />
+
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/surfaceView3"
+        android:background="#8AE5C5"
+        android:layout_alignBottom="@+id/amountTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -78,56 +93,85 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/amountHP"
-        android:layout_alignBottom="@+id/amountTime"
-        android:layout_toRightOf="@+id/textView3"
-        android:layout_toEndOf="@+id/textView3" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Amount of time for assignment"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/timeOfDead"
+        android:fontFamily="sans-serif-thin"
+        android:background="#ECECEC"
+        android:textSize="40dp"
+        android:layout_below="@+id/textView5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="33dp" />
+        android:textColor="#3D3F40" />
+
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/surfaceView4"
+        android:background="#8AE5C5"
+        android:layout_above="@+id/Lecturebox"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Points of worth"
+        android:text="Time for the assignment"
+        android:id="@+id/textView4"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#3D3F40"
+        android:textSize="30dp"
+        android:layout_below="@+id/titleOfAss"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Points worth"
         android:id="@+id/textView5"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_alignRight="@+id/amountHP"
-        android:layout_alignEnd="@+id/amountHP" />
+        android:textColor="#3D3F40"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="30dp"
+        android:layout_below="@+id/amountTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add new deadline"
+        android:text="Add"
         android:id="@+id/annasButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="deadLine" />
+        android:onClick="deadLine"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#E8777D"
+        android:background="#ECECEC"
+        android:stateListAnimator="@null"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="I attend lectures"
         android:id="@+id/Lecturebox"
-        android:layout_above="@+id/annasButton"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2" />
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#3D3F40"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/amountHP"
+        android:layout_alignRight="@+id/textView4"
+        android:layout_alignEnd="@+id/textView4" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This is an exam"
         android:id="@+id/ExamenBox"
-        android:layout_above="@+id/Lecturebox"
-        android:layout_alignLeft="@+id/Lecturebox"
-        android:layout_alignStart="@+id/Lecturebox" />
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#3D3F40"
+        android:layout_alignTop="@+id/Lecturebox"
+        android:layout_alignRight="@+id/textView5"
+        android:layout_alignEnd="@+id/textView5" />
 
 </RelativeLayout>
