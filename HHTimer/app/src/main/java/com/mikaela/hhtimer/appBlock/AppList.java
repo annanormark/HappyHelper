@@ -11,6 +11,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.app.ListActivity;
 
+<<<<<<< HEAD
 
 import com.mikaela.hhtimer.R;
 import com.mikaela.hhtimer.adapter.AppListAdapter;
@@ -21,6 +22,11 @@ import java.util.Calendar;
 import java.util.List;
 
 public class AppList extends ListActivity {
+=======
+import com.mikaela.hhtimer.R;
+
+public class AppList extends AppCompatActivity {
+>>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
