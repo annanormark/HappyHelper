@@ -1,5 +1,6 @@
 package com.mikaela.hhtimer;
 import android.content.Context;
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.app.Activity;
+
+import com.mikaela.hhtimer.service.CoreService;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -70,6 +74,11 @@ public interface OnFragmentInteractionListener{
                                                          TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
                                                          TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                                                                  TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+                                                //App block starts
+                                                 getActivity().startService(new Intent(getActivity(), CoreService.class));
+
+
                                              }
 
                                              public void onFinish() {
@@ -82,6 +91,9 @@ public interface OnFragmentInteractionListener{
                                                  fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commit();
 
                                                  Lis.addTime(startT);
+
+                                                 //App block stops
+                                                 getActivity().stopService(new Intent(getActivity(), CoreService.class));
 
                                              }
                                          }.start();

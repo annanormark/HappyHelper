@@ -3,6 +3,7 @@
     package="com.mikaela.hhtimer">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
 
     <application
         android:allowBackup="true"
@@ -49,7 +50,19 @@
         <activity
             android:name=".makeDeadLine"
             android:label="@string/title_activity_make_dead_line"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".appBlock.Warning"
+            android:label="@string/title_activity_warning"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".appBlock.Why"
+            android:label="@string/title_activity_why"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".appBlock.AppList"></activity>
+        <service
+            android:name=".service.CoreService"
+            android:exported="false" />
     </application>
 
 </manifest>

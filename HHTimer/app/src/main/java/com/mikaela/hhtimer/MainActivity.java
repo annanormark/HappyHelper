@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.mikaela.hhtimer.service.CoreService;
+
 
 public class MainActivity extends AppCompatActivity implements Study.OnFragmentInteractionListener, Rest.OnFragmentInteractionListener {
 
@@ -37,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
 
         /**** Makes the happy helper and the timer ****/
         gifView = (GifView) findViewById(+R.id.gif_view);
+       /* if (timeSpended >= AmountT){
+            Toast.makeText(MainActivity.this, "Now the apps should open", Toast.LENGTH_SHORT).show();
+            this.stopService(new Intent(this, CoreService.class));
+        }
+        */
         FragmentManager fragmentManager = getSupportFragmentManager();
         Study study = new Study();
         fragmentManager.beginTransaction().replace(R.id.mainContainer, study).commit();
