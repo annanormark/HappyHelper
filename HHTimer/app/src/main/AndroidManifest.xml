@@ -60,10 +60,16 @@
             android:name=".appBlock.Why"
             android:label="@string/title_activity_why"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".appBlock.AppList"></activity>
+        <activity android:name=".appBlock.AppList" />
+
         <service
             android:name=".service.CoreService"
             android:exported="false" />
+
+        <activity
+            android:name=".NotificationClass"
+            android:label="@string/title_activity_notification_class"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

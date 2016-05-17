@@ -1,4 +1,5 @@
 package com.mikaela.hhtimer;
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
@@ -77,44 +78,39 @@ public interface OnFragmentInteractionListener{
 
                                                 //App block starts
                                                  getActivity().startService(new Intent(getActivity(), CoreService.class));
-
-
                                              }
 
                                              public void onFinish() {
-
-
+                                                 /*** Makes phone vibrate ***/
                                                  Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                                                  v.vibrate(1000);
+                                                 Lis.addTime(startT);
 
-                                                 Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                 /*** Makes application appear in foreground ***/
+                                                 Intent intent = new Intent(getActivity(), NotificationClass.class);
                                                  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                  startActivity(intent);
 
+                                                 /*** Changes to break-session ***/
                                                  FragmentManager fragmentManager = getFragmentManager();
                                                  Rest rest = new Rest();
                                                  try {
+                                                    // fragmentManager.popBackStack();
                                                      fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commit();
                                                  }catch(IllegalStateException e){
                                                      fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commitAllowingStateLoss();
                                                  }
-                                                 Lis.addTime(startT);
 
                                                  //App block stops
                                                  getActivity().stopService(new Intent(getActivity(), CoreService.class));
 
+
                                              }
                                          }.start();
-
-
                                      }
-
                                  }
-
         );
-
         return view;
-
     }
 
     private void setTimerText(){

@@ -97,13 +97,17 @@ public class Rest extends Fragment {
 
                                              public void onFinish() {
 
+                                                 /*** Makes phone vibrate ***/
                                                  Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                                                  v.vibrate(1000);
+                                                 Lis.addTimeR(startT);
 
-                                                 Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                 /*** Makes application appear in foreground ***/
+                                                 Intent intent = new Intent(getActivity(), NotificationClass.class);
                                                  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                  startActivity(intent);
 
+                                                 /*** Changes to study-session ***/
                                                  FragmentManager fragmentManager = getFragmentManager();
                                                  Study study = new Study();
                                                  try {
@@ -111,8 +115,6 @@ public class Rest extends Fragment {
                                                  }catch(IllegalStateException e){
                                                      fragmentManager.beginTransaction().replace(R.id.mainContainer, study).commitAllowingStateLoss();
                                                  }
-
-                                                 Lis.addTimeR(startT);
 
                                              }
                                          }.start();
