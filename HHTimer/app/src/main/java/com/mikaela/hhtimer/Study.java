@@ -88,8 +88,11 @@ public interface OnFragmentInteractionListener{
 
                                                  FragmentManager fragmentManager = getFragmentManager();
                                                  Rest rest = new Rest();
-                                                 fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commit();
-
+                                                 try {
+                                                     fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commit();
+                                                 }catch(IllegalStateException e){
+                                                     fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commitAllowingStateLoss();
+                                                 }
                                                  Lis.addTime(startT);
 
                                                  //App block stops

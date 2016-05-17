@@ -101,7 +101,11 @@ public class Rest extends Fragment {
 
                                                  FragmentManager fragmentManager = getFragmentManager();
                                                  Study study = new Study();
-                                                 fragmentManager.beginTransaction().replace(R.id.mainContainer, study).commit();
+                                                 try {
+                                                     fragmentManager.beginTransaction().replace(R.id.mainContainer, study).commit();
+                                                 }catch(IllegalStateException e){
+                                                     fragmentManager.beginTransaction().replace(R.id.mainContainer, study).commitAllowingStateLoss();
+                                                 }
 
                                                  Lis.addTimeR(startT);
 

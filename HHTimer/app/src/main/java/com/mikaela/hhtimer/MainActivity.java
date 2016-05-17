@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
 
     public void addTime(Long time){
         timeSpended += time;
+        if(timeSpended >= totalTime){
+            endOfTotalTime();
+        }
     }
 
     public Long getTimeRest(){
@@ -69,9 +72,16 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
 
     public void addTimeR(Long time){
         timeSpended += time;
+        if(timeSpended >= totalTime){
+            endOfTotalTime();
+        }
     }
 
+    private void endOfTotalTime(){
+        //run popup
+        //end appblock
     }
+}
 
 
 
