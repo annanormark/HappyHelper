@@ -83,8 +83,7 @@ public class makeDeadLine extends AppCompatActivity {
     /*********** Pressed button "create deadline" ************/
     public void deadLine (View view){
         makeEvent();
-        Intent i = new Intent(this, Calendar.class);
-        startActivity(i);
+        finish();
     }
 
 }
