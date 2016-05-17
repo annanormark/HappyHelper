@@ -69,6 +69,10 @@
         <activity
             android:name=".NotificationClass"
             android:label="@string/title_activity_notification_class"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".PopDoneStudy"
+            android:label="@string/title_activity_pop_done_study"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 

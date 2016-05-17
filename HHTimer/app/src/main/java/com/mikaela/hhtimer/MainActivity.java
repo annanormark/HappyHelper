@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
     private void endOfTotalTime(){
         //run popup
         //end appblock
+        Intent intent = new Intent(this, PopDoneStudy.class);
+        startActivity(intent);
+        getApplicationContext().stopService(new Intent(getApplicationContext(), CoreService.class));
     }
 }
 

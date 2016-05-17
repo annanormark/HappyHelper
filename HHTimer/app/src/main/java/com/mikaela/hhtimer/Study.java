@@ -102,7 +102,7 @@ public interface OnFragmentInteractionListener{
                                                  }
 
                                                  //App block stops
-                                                 getActivity().stopService(new Intent(getActivity(), CoreService.class));
+                                                 //getActivity().stopService(new Intent(getActivity(), CoreService.class));
 
 
                                              }
