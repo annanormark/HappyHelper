@@ -96,8 +96,13 @@ public class Rest extends Fragment {
                                              }
 
                                              public void onFinish() {
+
                                                  Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                                                  v.vibrate(1000);
+
+                                                 Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                 startActivity(intent);
 
                                                  FragmentManager fragmentManager = getFragmentManager();
                                                  Study study = new Study();
