@@ -1,11 +1,16 @@
 package com.mikaela.hhtimer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Movie;
 import android.os.SystemClock;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.Window;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.Random;
@@ -42,11 +47,22 @@ public class GifView extends View {
         setFocusable(true);
 
 
-        gifInputStream = context.getResources().openRawResource(+R.drawable.e);
+        DisplayMetrics metrics = new DisplayMetrics();
+        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+       if(metrics.widthPixels < 900) {
+           gifInputStream = context.getResources().openRawResource(+R.drawable.ogonliten);
+
+       }else {
+           gifInputStream = context.getResources().openRawResource(+R.drawable.e);
+       }
+
         gifMovie = Movie.decodeStream(gifInputStream);
         movieWidth = gifMovie.width();
         movieHeight = gifMovie.height();
         movieDuration = gifMovie.duration();
+
+
 
 
     }
@@ -68,6 +84,8 @@ public class GifView extends View {
     }
 
     protected void onDraw(Canvas canvas){
+
+
 
         long now = SystemClock.uptimeMillis();
 

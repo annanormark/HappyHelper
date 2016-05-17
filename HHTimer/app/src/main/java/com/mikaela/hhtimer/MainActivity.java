@@ -1,11 +1,13 @@
 package com.mikaela.hhtimer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -29,6 +31,10 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
+
         /**** Get the time set in Timer-menu ****/
         SharedPreferences sharedpreferences = getSharedPreferences(MyPrefrences, Context.MODE_PRIVATE);
         if( sharedpreferences != null) {
@@ -38,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
         }
 
         /**** Makes the happy helper and the timer ****/
-        gifView = (GifView) findViewById(+R.id.gif_view);
+        gifView = (GifView) (findViewById(+R.id.gif_view));
         FragmentManager fragmentManager = getSupportFragmentManager();
         Study study = new Study();
         fragmentManager.beginTransaction().replace(R.id.mainContainer, study).commit();
