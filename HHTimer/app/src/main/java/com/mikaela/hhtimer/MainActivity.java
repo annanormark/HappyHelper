@@ -16,9 +16,9 @@ import com.mikaela.hhtimer.service.CoreService;
 public class MainActivity extends AppCompatActivity implements Study.OnFragmentInteractionListener, Rest.OnFragmentInteractionListener {
 
     static boolean active = false;
-    private long newT = 16000;
-    private long newTR = 80000;
-    private long AmountT = 2000*60*60;
+    private long studySessionTime = 16000;
+    private long breakSessionTime = 80000;
+    private long totalTime = 2000*60*60;
     public int timeSpended = 0;
     GifView gifView;
     Button menubtn;
@@ -32,18 +32,13 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
         /**** Get the time set in Timer-menu ****/
         SharedPreferences sharedpreferences = getSharedPreferences(MyPrefrences, Context.MODE_PRIVATE);
         if( sharedpreferences != null) {
-            newT = sharedpreferences.getLong("studySession", 50 * 60000);
-            newTR = sharedpreferences.getLong("breakSession", 10 * 60000);
-            AmountT = sharedpreferences.getLong("totalTime", 120 * 60000);
+            studySessionTime = sharedpreferences.getLong("studySession", 50 * 60000);
+            breakSessionTime = sharedpreferences.getLong("breakSession", 10 * 60000);
+            totalTime = sharedpreferences.getLong("totalTime", 120 * 60000);
         }
 
         /**** Makes the happy helper and the timer ****/
         gifView = (GifView) findViewById(+R.id.gif_view);
-       /* if (timeSpended >= AmountT){
-            Toast.makeText(MainActivity.this, "Now the apps should open", Toast.LENGTH_SHORT).show();
-            this.stopService(new Intent(this, CoreService.class));
-        }
-        */
         FragmentManager fragmentManager = getSupportFragmentManager();
         Study study = new Study();
         fragmentManager.beginTransaction().replace(R.id.mainContainer, study).commit();
@@ -61,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
     }
 
     public Long getTime(){
-        return newT;
+        return studySessionTime;
     }
 
     public void addTime(Long time){
@@ -69,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
     }
 
     public Long getTimeRest(){
-        return newTR;
+        return breakSessionTime;
     }
 
     public void addTimeR(Long time){
