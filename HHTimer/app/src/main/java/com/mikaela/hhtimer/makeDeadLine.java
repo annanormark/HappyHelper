@@ -36,7 +36,7 @@ public class makeDeadLine extends AppCompatActivity {
         SelectedTime = (Date) selectedDate.get("Time");
 
         TextView date = (TextView) findViewById(R.id.DateText);
-        date.setText("" + SelectedTime.getMonth() + "/" + SelectedTime.getDate() + " ");
+        date.setText("" + SelectedTime.getDate() + "/" + (SelectedTime.getMonth()+1) + " ");
 
     }
 

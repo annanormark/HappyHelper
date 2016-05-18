@@ -16,26 +16,28 @@ import com.github.sundeepk.compactcalendarview.domain.CalendarDayEvent;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Calendar extends AppCompatActivity {
     dbHandler datesOfDeadLines;
     Date selectedDate;
+    String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-
         final Context context = getApplicationContext();
         final TextView tex = (TextView) findViewById(R.id.annasText);
         final CompactCalendarView Cal = (CompactCalendarView) findViewById(R.id.Cal);
+        datesOfDeadLines = new dbHandler(this, null, null,1);
 
+        // Set text on top of Calendar
         assert tex != null;
         tex.setText("");
-
-
-        datesOfDeadLines = new dbHandler(this, null, null,1);
+        int thisMonth = java.util.Calendar.getInstance(Locale.getDefault()).getTime().getMonth();
+        tex.setText(months[thisMonth]);
 
         //Makes the events show in the interface as dots when starting
         assert Cal != null;
@@ -56,7 +58,7 @@ public class Calendar extends AppCompatActivity {
                 ListView eventList = (ListView) findViewById(R.id.eventList);
                 selectedDate = dateClicked;
 
-                tex.setText("" + selectedDate.getDate() + "/" + selectedDate.getMonth() + " ");
+                //tex.setText("" + selectedDate.getDate() + "/" + selectedDate.getMonth() + " ");
                 ListAdapter adapter = new customAdapter(getBaseContext(), datesOfDeadLines.getTitles(dateClicked.getTime()));
                 assert eventList != null;
                 eventList.setAdapter(adapter);
@@ -67,6 +69,8 @@ public class Calendar extends AppCompatActivity {
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 //  actionBar.setTitle(dateFormatForMonth.format(firstDayOfNewMonth));
+                int thisMonth = firstDayOfNewMonth.getMonth();
+                tex.setText(months[thisMonth]);
             }
         });
 
