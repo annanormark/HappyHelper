@@ -76,7 +76,7 @@ public class AppListAdapter extends BaseAdapter {
         final PackageInfo packageInfo = mInstalledList.get(position);
 
         holder.textView.setText(packageInfo.applicationInfo.loadLabel(mInstance.getPackageManager()).toString());
-        holder.imageView.setImageResource(packageInfo.applicationInfo.icon);
+        //holder.imageView.setImageResource(packageInfo.applicationInfo.icon);
         Drawable drawable = packageInfo.applicationInfo.loadIcon(mInstance.getPackageManager());
         holder.imageView.setBackgroundDrawable(drawable);
 
