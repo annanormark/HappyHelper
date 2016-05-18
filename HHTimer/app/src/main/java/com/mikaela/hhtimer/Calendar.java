@@ -22,6 +22,7 @@ public class Calendar extends AppCompatActivity {
     dbHandler datesOfDeadLines;
     Date selectedDate;
     String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    String[] dayColNames ={"M", "T", "O", "T", "F", "S", "S"};
 
 
     @Override
@@ -39,8 +40,10 @@ public class Calendar extends AppCompatActivity {
         int thisMonth = java.util.Calendar.getInstance(Locale.getDefault()).getTime().getMonth();
         tex.setText(months[thisMonth]);
 
-        //Makes the events show in the interface as dots when starting
+        //Makes the Calendar
         assert Cal != null;
+        Cal.setCurrentDate(java.util.Calendar.getInstance(Locale.getDefault()).getTime());
+        Cal.setDayColumnNames(dayColNames);
         Cal.drawSmallIndicatorForEvents(true);
         List<Long> dates = datesOfDeadLines.getDates();
         for (int i = 0; i <dates.size(); i++){
@@ -48,17 +51,13 @@ public class Calendar extends AppCompatActivity {
         }
         Cal.invalidate();
 
-
-
         /***********Sets listener for what happens when a new date is clicked in the calendar***************/
         Cal.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-
                 ListView eventList = (ListView) findViewById(R.id.eventList);
                 selectedDate = dateClicked;
 
-                //tex.setText("" + selectedDate.getDate() + "/" + selectedDate.getMonth() + " ");
                 ListAdapter adapter = new customAdapter(getBaseContext(), datesOfDeadLines.getTitles(dateClicked.getTime()));
                 assert eventList != null;
                 eventList.setAdapter(adapter);
@@ -73,6 +72,7 @@ public class Calendar extends AppCompatActivity {
                 tex.setText(months[thisMonth]);
             }
         });
+
 
 
     }

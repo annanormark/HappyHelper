@@ -36,7 +36,9 @@ public class makeDeadLine extends AppCompatActivity {
         SelectedTime = (Date) selectedDate.get("Time");
 
         TextView date = (TextView) findViewById(R.id.DateText);
-        date.setText("" + SelectedTime.getDate() + "/" + (SelectedTime.getMonth()+1) + " ");
+        String deadDate = SelectedTime.getDate() + "-" + (SelectedTime.getMonth()+1) + "-20" + (SelectedTime.getYear()-100);
+        assert date != null;
+        date.setText(deadDate);
 
     }
 
