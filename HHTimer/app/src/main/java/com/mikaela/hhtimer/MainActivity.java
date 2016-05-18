@@ -90,6 +90,8 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
         startActivity(intent);
         getApplicationContext().stopService(new Intent(getApplicationContext(), CoreService.class));
     }
+
+    
 }
 
 

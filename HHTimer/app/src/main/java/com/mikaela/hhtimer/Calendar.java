@@ -23,7 +23,7 @@ public class Calendar extends AppCompatActivity {
     Date selectedDate;
     String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     String[] dayColNames ={"M", "T", "O", "T", "F", "S", "S"};
-
+    CompactCalendarView Cal = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class Calendar extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
         final Context context = getApplicationContext();
         final TextView tex = (TextView) findViewById(R.id.annasText);
-        final CompactCalendarView Cal = (CompactCalendarView) findViewById(R.id.Cal);
+        Cal = (CompactCalendarView) findViewById(R.id.Cal);
         datesOfDeadLines = new dbHandler(this, null, null,1);
 
         // Set text on top of Calendar
@@ -44,11 +44,7 @@ public class Calendar extends AppCompatActivity {
         assert Cal != null;
         Cal.setCurrentDate(java.util.Calendar.getInstance(Locale.getDefault()).getTime());
         Cal.setDayColumnNames(dayColNames);
-        Cal.drawSmallIndicatorForEvents(true);
-        List<Long> dates = datesOfDeadLines.getDates();
-        for (int i = 0; i <dates.size(); i++){
-            Cal.addEvent(new CalendarDayEvent(dates.get(i), Color.RED), false);
-        }
+        refreshCalendar();
         Cal.invalidate();
 
         /***********Sets listener for what happens when a new date is clicked in the calendar***************/
@@ -73,8 +69,6 @@ public class Calendar extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     /*************** clicked button "add event", starts activity "makeDeadLine" *****************/
@@ -88,6 +82,26 @@ public class Calendar extends AppCompatActivity {
         Intent i = new Intent(this, makeDeadLine.class);
         i.putExtra("Time", selectedDate);
         startActivity(i);
+        refreshCalendar();
 
+    }
+
+    private void refreshCalendar(){
+        if(Cal != null) {
+            Cal.drawSmallIndicatorForEvents(true);
+            List<Long> dates = datesOfDeadLines.getDates();
+            for (int i = 0; i < dates.size(); i++) {
+                Cal.addEvent(new CalendarDayEvent(dates.get(i), Color.RED), false);
+            }
+            Cal.invalidate();
+        }
+    }
+
+    @Override
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        refreshCalendar();
+        //Refresh your stuff here
     }
 }
