@@ -8,15 +8,30 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".WarningActivity"
-    android:background="#ECECEC">
+    android:background="#ECECEC"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/sadc"
+        android:layout_above="@+id/warningText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/warning_text"
+        android:text="Hey, you still have some studytime left..."
         android:id="@+id/warningText"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="135dp" />
+        android:textColor="#3D3F40"
+        android:fontFamily="sans-serif-thin"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="43dp" />
 </RelativeLayout>

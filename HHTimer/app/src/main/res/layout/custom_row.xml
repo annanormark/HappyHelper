@@ -5,7 +5,7 @@
     android:background="#ECECEC">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
@@ -16,5 +16,19 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:singleLine="false" />
+        android:singleLine="false"
+        android:layout_marginBottom="30dp"
+        android:paddingBottom="10dp" />
+
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/surfaceView5"
+        android:background="#BCBCBC"
+        android:layout_alignBottom="@+id/Titel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+
 </RelativeLayout>

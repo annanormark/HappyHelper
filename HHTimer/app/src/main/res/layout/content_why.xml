@@ -8,14 +8,20 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.rebecca.appblocker.Why"
-    android:background="#ECECEC">
+    android:background="#ECECEC"
+    android:orientation="vertical">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ok_button"
+        android:text="Got it!"
         android:id="@+id/ok_button"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="81dp"
+        android:background="#ECECEC"
+        android:textColor="#E8777D"
+        android:stateListAnimator="@null"
+        android:textSize="30dp"
+        android:fontFamily="sans-serif-thin"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -24,11 +30,13 @@
         android:layout_height="wrap_content"
         android:text="User Access is required for HappyHelper to block applications from distracting you during your study session. As well as giving you the best user experience possible ."
         android:id="@+id/textView"
-        android:layout_alignParentTop="true"
+        android:textColor="#3D3F40"
+        android:fontFamily="sans-serif-thin"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:layout_above="@+id/ok_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/ok_button"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginBottom="89dp" />
 
 </RelativeLayout>

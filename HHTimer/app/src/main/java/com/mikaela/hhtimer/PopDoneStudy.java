@@ -21,7 +21,7 @@ public class PopDoneStudy extends Activity {
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int) (width * 0.9), (int) (height * 0.7));
+        getWindow().setLayout((int) (width), (int) (height));
 
 
         Button close = (Button) findViewById(R.id.appGo);
