@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.String;
 
@@ -49,6 +50,7 @@ public class Timer extends AppCompatActivity  {
         long studySes =  (sharedpreferences.getLong("studySession", 50*60000 + 1000) - 1000)/ 60000;
         long breakSes =  (sharedpreferences.getLong("breakSession", 10*60000 + 1000) - 1000)/ 60000;
         long total =  (sharedpreferences.getLong("totalTime", 120*60000 + 1000) - 1000) / 60000;
+        
         studySession.setProgress((int) studySes);
         breakSession.setProgress((int) breakSes);
         totalTime.setProgress((int) total);
@@ -116,35 +118,28 @@ public class Timer extends AppCompatActivity  {
                 String studyString = studyNumber.getText().toString();
                 long sst = Long.parseLong(studyString.substring(0, studyString.length() - 4)) * 60000 + 1000;
                 String breakString = breakNumber.getText().toString();
-                long bst = Long.parseLong(breakString.substring(0, studyString.length() - 4)) * 60000 + 1000;
+                long bst = Long.parseLong(breakString.substring(0, breakString.length() - 4)) * 60000 + 1000;
                 String totaltString = totalNumber.getText().toString();
-                long tt = Long.parseLong(totaltString.substring(0, studyString.length() - 4)) * 60000 + 1000;
+                long tt = Long.parseLong(totaltString.substring(0, totaltString.length() - 4)) * 60000 + 1000;
 
                 /*** Adds user input to DB ***/
                 edit.putLong("studySession", sst);
                 edit.putLong("breakSession", bst);
                 edit.putLong("totalTime", tt);
                 edit.commit();
-
+                
                 /*** go to start-page ***/
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
             }
 
         });
-
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
         Action viewAction = Action.newAction(
                 Action.TYPE_VIEW, // TODO: choose an action type.
@@ -162,9 +157,6 @@ public class Timer extends AppCompatActivity  {
     @Override
     public void onStop() {
         super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         Action viewAction = Action.newAction(
                 Action.TYPE_VIEW, // TODO: choose an action type.
                 "Timer Page", // TODO: Define a title for the content shown.

@@ -31,10 +31,6 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
-
         /**** Get the time set in Timer-menu ****/
         SharedPreferences sharedpreferences = getSharedPreferences(MyPrefrences, Context.MODE_PRIVATE);
         if( sharedpreferences != null) {
@@ -91,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements Study.OnFragmentI
         getApplicationContext().stopService(new Intent(getApplicationContext(), CoreService.class));
     }
 
-    
+
 }
 
 
