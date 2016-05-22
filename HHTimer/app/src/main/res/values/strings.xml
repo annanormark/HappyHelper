@@ -84,4 +84,6 @@
     <string name="ok_button">OK</string>
     <string name="title_activity_notification_class">NotificationClass</string>
     <string name="title_activity_pop_done_study">PopDoneStudy</string>
+    <string name="appList_closed_message">Menu closed while studying</string>
+    <string name="fetching_apps">Fetching...</string>
 </resources>

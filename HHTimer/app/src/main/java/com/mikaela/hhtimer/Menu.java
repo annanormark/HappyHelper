@@ -9,9 +9,12 @@ import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.mikaela.hhtimer.appBlock.AppList;
 import com.mikaela.hhtimer.appBlock.Why;
+import com.mikaela.hhtimer.service.CoreService;
+import com.mikaela.hhtimer.util.BlockUtils;
 import com.mikaela.hhtimer.util.TopActivityUtils;
 
 public class Menu extends Activity {
@@ -65,17 +68,24 @@ public class Menu extends Activity {
         appBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!TopActivityUtils.isStatAccessPermissionSet(Menu.this)) {
-                    showDialog();
-                } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-                        Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-                        intent.setClass(Menu.this, AppList.class);
-                        startActivity(intent);
+                if (BlockUtils.isBlockServiceRunning(Menu.this,
+                        CoreService.class)) {
+                    Toast.makeText(Menu.this, R.string.appList_closed_message, Toast.LENGTH_LONG).show();
+                }
+                else {
+                    if (!TopActivityUtils.isStatAccessPermissionSet(Menu.this)) {
+                        showDialog();
                     } else {
-                        Intent intent = new Intent();
-                        intent.setClass(Menu.this, AppList.class);
-                        startActivity(intent);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                            intent.setClass(Menu.this, AppList.class);
+                            Toast.makeText(Menu.this, R.string.fetching_apps, Toast.LENGTH_LONG).show();
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent();
+                            intent.setClass(Menu.this, AppList.class);
+                            startActivity(intent);
+                        }
                     }
                 }
             }
