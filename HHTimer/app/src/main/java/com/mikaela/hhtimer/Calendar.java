@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.CalendarDayEvent;
+import com.mikaela.hhtimer.util.DeadlineClicked;
 
 import java.util.Date;
 import java.util.List;
@@ -31,6 +33,7 @@ public class Calendar extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
         final Context context = getApplicationContext();
         final TextView tex = (TextView) findViewById(R.id.annasText);
+        final ListView eventList = (ListView) findViewById(R.id.eventList);
         Cal = (CompactCalendarView) findViewById(R.id.Cal);
         datesOfDeadLines = new dbHandler(this, null, null,1);
 
@@ -51,12 +54,24 @@ public class Calendar extends AppCompatActivity {
         Cal.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-                ListView eventList = (ListView) findViewById(R.id.eventList);
+
                 selectedDate = dateClicked;
 
                 ListAdapter adapter = new customAdapter(getBaseContext(), datesOfDeadLines.getTitles(dateClicked.getTime()));
                 assert eventList != null;
                 eventList.setAdapter(adapter);
+
+                eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent i = new Intent(context, DeadlineClicked.class);
+                        Object o = eventList.getItemAtPosition(position);
+                        String productname = (String) o;
+                        i.putExtra("event", productname);
+                        startActivity(i);
+                        refreshCalendar();
+                    }
+                });
 
 
             }
@@ -68,6 +83,8 @@ public class Calendar extends AppCompatActivity {
                 tex.setText(months[thisMonth]);
             }
         });
+
+
 
     }
 

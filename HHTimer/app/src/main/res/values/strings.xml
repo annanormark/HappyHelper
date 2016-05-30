@@ -86,4 +86,6 @@
     <string name="title_activity_pop_done_study">PopDoneStudy</string>
     <string name="appList_closed_message">Menu closed while studying</string>
     <string name="fetching_apps">Fetching...</string>
+    <string name="title_activity_deadline_clicked">DeadlineClicked</string>
+    <string name="title_activity_show_time_contatiner">ShowTimeContatiner</string>
 </resources>

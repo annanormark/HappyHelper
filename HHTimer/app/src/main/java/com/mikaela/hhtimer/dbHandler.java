@@ -20,6 +20,7 @@ public class dbHandler extends SQLiteOpenHelper {
     private static final String COLUMN_PRODUCTNAME = "productname";
     private static final String COLUMN_DATE = "date";
     private static final String COLUMN_WORK = "work";
+    private static final String COLUMN_WORK_PER_DAY = "work_per_day";
 
     public dbHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
@@ -51,6 +52,7 @@ public class dbHandler extends SQLiteOpenHelper {
         values.put(COLUMN_PRODUCTNAME, product.get_productname());
         values.put(COLUMN_DATE, product.get_date());
         values.put(COLUMN_WORK, product.get_work());
+        values.put(COLUMN_WORK_PER_DAY, product.get_workperday());
 
         //adds values to database
         SQLiteDatabase db = getWritableDatabase();
@@ -59,9 +61,9 @@ public class dbHandler extends SQLiteOpenHelper {
     }
 
     //Delete product from database
-    public void deleteProduct(String productname) {
+    public void deleteProduct(String productName) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_PRODUCTNAME + "=\'" + productname + "\';");
+        db.execSQL("DELETE FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_PRODUCTNAME + "=\'" + productName + "\';");
     }
 
     //Print out the database as a string
@@ -94,6 +96,7 @@ public class dbHandler extends SQLiteOpenHelper {
 
         //Cursor point to location in your result
         Cursor c = db.rawQuery(query, null);
+
         //Move to the first row in your result
         c.moveToFirst();
 
@@ -128,6 +131,7 @@ public class dbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT " + COLUMN_PRODUCTNAME + " FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_DATE + "=" + dateInMilliSec.toString() + ";";
         Cursor c = db.rawQuery(query, null);
+
         //Move to the first row in your result
         c.moveToFirst();
 
@@ -141,29 +145,15 @@ public class dbHandler extends SQLiteOpenHelper {
         return result;
     }
 
-    public List<Integer> getWork(Long dateInMilliSec) {
+    public Cursor getWorkRelatedTitles(){
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT " + COLUMN_WORK + " FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_DATE + "=" + dateInMilliSec.toString() + ";";
-        Cursor c = db.rawQuery(query, null);
-
-        //Move to the first row in your result
-        c.moveToFirst();
-        List<Integer> result = new ArrayList<>();
-        while (!c.isAfterLast()) {
-            result.add(c.getInt(c.getColumnIndex(COLUMN_WORK)));
-            c.moveToNext();
-        }
-        return result;
-    }
-
-    public Cursor getAll(Long dateInMilliSec) {
-        SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT " + COLUMN_ID + ", " + COLUMN_WORK + ", " + COLUMN_PRODUCTNAME + ", " + COLUMN_DATE + " FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_DATE + "=" + dateInMilliSec.toString() + ";";
+        String query = "SELECT " + COLUMN_PRODUCTNAME + ", " + COLUMN_WORK_PER_DAY + " FROM " + TABLE_PRODUCTS + " WHERE 1;";
         Cursor c = db.rawQuery(query, null);
 
         //Move to the first row in your result
         c.moveToFirst();
         return c;
     }
+
 }
 

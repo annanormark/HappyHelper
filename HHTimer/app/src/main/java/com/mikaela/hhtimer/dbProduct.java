@@ -8,14 +8,16 @@ public class dbProduct {
     private String _productname;
     private Long _date;
     private int _work;
+    private int _workperday;
 
     //Constructors
     public dbProduct(){}
 
-    public dbProduct(String productname, Long date, int work){
+    public dbProduct(String productname, Long date, int work, int workperday){
         this._productname = productname;
         this._date = date;
         this._work = work;
+        this._workperday = workperday;
     }
 
     public void set_id(int _id) {
@@ -42,5 +44,8 @@ public class dbProduct {
         return _work;
     }
 
+    public int get_workperday() {
+        return _workperday;
+    }
 }
 

@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 public class makeDeadLine extends AppCompatActivity {
     public Date SelectedTime;
@@ -46,7 +48,7 @@ public class makeDeadLine extends AppCompatActivity {
     private int turnHPintoTime(int HP){
         CheckBox Lectures = (CheckBox) findViewById(R.id.Lecturebox);
         if(HP > 3 && Lectures.isChecked()){
-            return HP * 27 * 4/10;
+            return HP * 27 * 6/10;
         }
         else
             return HP * 27;
@@ -70,16 +72,28 @@ public class makeDeadLine extends AppCompatActivity {
         // Calculating and creating the deadline
         if (amountTime.getText().length() < 1){
             workload = turnHPintoTime(Integer.parseInt(amountHP.getText().toString()));
-            dbProduct newDeadLine = new dbProduct(titleOfAssignment.getText().toString(), SelectedTime.getTime(), workload);
+            int hoursPerDay = calculateScheduel(workload);
+            dbProduct newDeadLine = new dbProduct(titleOfAssignment.getText().toString(), SelectedTime.getTime(), workload, hoursPerDay);
             dbHandler db = new dbHandler(context, "", null, 0);
             db.addProduct(newDeadLine);
             return;
         }
         workload = Integer.parseInt(amountTime.getText().toString());
-        dbProduct newDeadLine = new dbProduct(titleOfAssignment.getText().toString(), SelectedTime.getTime(), workload);
+        int hoursPerDay = calculateScheduel(workload);
+        dbProduct newDeadLine = new dbProduct(titleOfAssignment.getText().toString(), SelectedTime.getTime(), workload, hoursPerDay);
         dbHandler db = new dbHandler(context, "", null, 0);
         db.addProduct(newDeadLine);
 
+    }
+
+    /*********** Calculate time-per-day for deadline **********/
+    private int calculateScheduel(int hours){
+        long deadlineDateMilliS = SelectedTime.getTime();
+        Calendar c = Calendar.getInstance();
+        long today = c.getTimeInMillis();
+        long studyIntervall = TimeUnit.MILLISECONDS.toDays(deadlineDateMilliS - today);
+        studyIntervall = 5 * (studyIntervall / 7);
+        return hours/(int) studyIntervall;
     }
 
     /*********** Pressed button "create deadline" ************/
