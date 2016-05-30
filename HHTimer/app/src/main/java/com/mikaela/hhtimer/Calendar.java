@@ -54,7 +54,6 @@ public class Calendar extends AppCompatActivity {
         Cal.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-
                 selectedDate = dateClicked;
 
                 ListAdapter adapter = new customAdapter(getBaseContext(), datesOfDeadLines.getTitles(dateClicked.getTime()));
@@ -112,6 +111,11 @@ public class Calendar extends AppCompatActivity {
             }
             Cal.invalidate();
         }
+    }
+
+    public void showWork(View view){
+        Intent i = new Intent(this, ShowTimeContatiner.class);
+        startActivity(i);
     }
 
     @Override

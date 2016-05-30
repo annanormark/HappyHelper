@@ -88,12 +88,16 @@ public class makeDeadLine extends AppCompatActivity {
 
     /*********** Calculate time-per-day for deadline **********/
     private int calculateScheduel(int hours){
-        long deadlineDateMilliS = SelectedTime.getTime();
+        Long deadlineDateMilliS = SelectedTime.getTime();
         Calendar c = Calendar.getInstance();
-        long today = c.getTimeInMillis();
-        long studyIntervall = TimeUnit.MILLISECONDS.toDays(deadlineDateMilliS - today);
-        studyIntervall = 5 * (studyIntervall / 7);
-        return hours/(int) studyIntervall;
+        Long today = c.getTimeInMillis();
+        Long studyIntervall = /*TimeUnit.MILLISECONDS.toDays*/(deadlineDateMilliS - today);
+        studyIntervall = studyIntervall/(1000*60*60*24);
+        if(studyIntervall>7)
+            studyIntervall = 5 * ((studyIntervall) / 7);
+        int sI = studyIntervall.intValue() + 1;
+       // Toast.makeText(makeDeadLine.this, "" + sI + " " + studyIntervall + " " + today + " " + deadlineDateMilliS, Toast.LENGTH_LONG).show();
+        return hours/sI;
     }
 
     /*********** Pressed button "create deadline" ************/

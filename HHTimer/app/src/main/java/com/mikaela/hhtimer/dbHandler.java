@@ -33,7 +33,8 @@ public class dbHandler extends SQLiteOpenHelper {
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_PRODUCTNAME + " TEXT, " +
                 COLUMN_DATE + " LONG, " +
-                COLUMN_WORK + " INT" +
+                COLUMN_WORK + " INT, " +
+                COLUMN_WORK_PER_DAY + " INT" +
                 ");";
         db.execSQL(query);
     }
@@ -74,36 +75,36 @@ public class dbHandler extends SQLiteOpenHelper {
 
         //Cursor point to location in your result
         Cursor c = db.rawQuery(query, null);
+
         //Move to the first row in your result
         c.moveToFirst();
 
         while (!c.isAfterLast()) {
-            if (c.getString(c.getColumnIndex("productname")) != null) {
-                dbString += c.getString(c.getColumnIndex("productname"));
+            if (c.getString(c.getColumnIndex(COLUMN_PRODUCTNAME)) != null) {
+                dbString += c.getString(c.getColumnIndex(COLUMN_PRODUCTNAME));
                 dbString += "\n";
             }
             c.moveToNext();
         }
         db.close();
         return dbString;
-
     }
 
-    public String eventsOfDatesToString(Long Millisec) {
-        String dbString = "";
+    public String[] eventsToArray() {
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_DATE + "=" + Millisec.toString() + ";";
+        String query = "SELECT * FROM " + TABLE_PRODUCTS + " WHERE 1;";
 
         //Cursor point to location in your result
         Cursor c = db.rawQuery(query, null);
+        String[] dbString = new String[c.getCount()];
 
         //Move to the first row in your result
         c.moveToFirst();
-
+        int index = 0;
         while (!c.isAfterLast()) {
-            if (c.getString(c.getColumnIndex("productname")) != null) {
-                dbString += c.getString(c.getColumnIndex("productname"));
-                dbString += "\n";
+            if (c.getString(c.getColumnIndex(COLUMN_PRODUCTNAME)) != null) {
+                dbString[index] = c.getString(c.getColumnIndex(COLUMN_PRODUCTNAME));
+                index++;
             }
             c.moveToNext();
         }
@@ -113,10 +114,10 @@ public class dbHandler extends SQLiteOpenHelper {
     }
 
     public List<Long> getDates() {
-        String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT DISTINCT " + COLUMN_DATE + " FROM " + TABLE_PRODUCTS + " WHERE 1;";
         Cursor c = db.rawQuery(query, null);
+
         //Move to the first row in your result
         c.moveToFirst();
         List<Long> result = new ArrayList<>();

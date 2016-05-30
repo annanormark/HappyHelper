@@ -88,11 +88,17 @@
         style="@style/Base.Widget.AppCompat.ActionButton.Overflow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
+        android:id="@+id/WorkButton"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/eventList"
         android:layout_alignEnd="@+id/eventList"
         android:layout_above="@+id/Cal"
-        android:background="#000000" />
+        android:background="#ECECEC"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#E8777D"
+        android:onClick="showWork"
+        android:text="Planner"
+        android:stateListAnimator="@null"
+        android:textSize="20dp"/>
 
 </RelativeLayout>

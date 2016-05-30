@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ShowTimeContatiner"
-    tools:showIn="@layout/activity_show_time_contatiner">
+    tools:showIn="@layout/activity_show_time_contatiner"
+    android:background="#ECECEC">
 
     <ListView
         android:layout_width="wrap_content"
@@ -19,7 +20,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView7"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#3D3F40"
+        android:layout_marginBottom="50dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,5 +33,19 @@
         android:text="What you should study today"
         android:id="@+id/textView7"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#E8777D" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Remember to take the weekend off!"
+        android:id="@+id/textView11"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#3D3F40"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
 </RelativeLayout>
