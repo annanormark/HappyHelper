@@ -2,6 +2,7 @@ package com.mikaela.hhtimer.Calendar;
 
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,5 +28,20 @@ class titleOfAssignmentAdapter extends ArrayAdapter {
 
         annasText.setText(singleFoodItem);
         return customView;
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
+
+    @Override
+    public void registerDataSetObserver(DataSetObserver observer) {
+        super.registerDataSetObserver(observer);
+    }
+
+    @Override
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+        super.unregisterDataSetObserver(observer);
     }
 }

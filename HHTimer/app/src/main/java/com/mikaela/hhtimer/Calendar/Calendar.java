@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +27,7 @@ public class Calendar extends AppCompatActivity {
     String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     String[] dayColNames ={"M", "T", "O", "T", "F", "S", "S"};
     CompactCalendarView Cal = null;
+    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +35,9 @@ public class Calendar extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
         final Context context = getApplicationContext();
         final TextView tex = (TextView) findViewById(R.id.annasText);
-        final ListView eventList = (ListView) findViewById(R.id.eventList);
         Cal = (CompactCalendarView) findViewById(R.id.Cal);
         datesOfDeadLines = new dbHandler(this, null, null,1);
+        final ListView eventList = (ListView) findViewById(R.id.eventList);
 
         // Set text on top of Calendar
         assert tex != null;
@@ -58,12 +59,13 @@ public class Calendar extends AppCompatActivity {
                 selectedDate = dateClicked;
 
                 //Show events in this dates
-                ListAdapter adapter = new titleOfAssignmentAdapter(getBaseContext(), datesOfDeadLines.getTitles(dateClicked.getTime()));
+                adapter = new titleOfAssignmentAdapter(getBaseContext(), datesOfDeadLines.getTitles(dateClicked.getTime()));
                 assert eventList != null;
                 eventList.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
 
                 /*** When event is clicked in list ***/
-                eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             /*   eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         //Finds clicked item
@@ -75,6 +77,22 @@ public class Calendar extends AppCompatActivity {
                         i.putExtra("event", productname);
                         startActivity(i);
                         refreshCalendar();
+                    }
+                });*/
+
+                /*** When long-clicking event, delete it ***/
+                eventList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                        Object o = eventList.getItemAtPosition(position);
+                        String productName = (String) o;
+                        datesOfDeadLines.deleteProduct(productName);
+                        Toast.makeText(Calendar.this, "Deleted " + productName, Toast.LENGTH_SHORT).show();
+                        Cal.removeAllEvents();
+                        refreshCalendar();
+                        adapter = new titleOfAssignmentAdapter(getBaseContext(), datesOfDeadLines.getTitles(selectedDate.getTime()));
+                        eventList.setAdapter(adapter);
+                        return true;
                     }
                 });
             }
@@ -99,6 +117,7 @@ public class Calendar extends AppCompatActivity {
         Intent i = new Intent(this, makeDeadLine.class);
         i.putExtra("Time", selectedDate);
         startActivity(i);
+        Cal.removeAllEvents();
         refreshCalendar();
     }
 
@@ -124,5 +143,10 @@ public class Calendar extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         refreshCalendar();
+        if (selectedDate != null) {
+            ListView eventList = (ListView) findViewById(R.id.eventList);
+            adapter = new titleOfAssignmentAdapter(getBaseContext(), datesOfDeadLines.getTitles(selectedDate.getTime()));
+            eventList.setAdapter(adapter);
+        }
     }
 }
