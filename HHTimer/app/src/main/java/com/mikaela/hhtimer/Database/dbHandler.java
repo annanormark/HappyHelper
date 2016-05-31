@@ -1,14 +1,12 @@
-package com.mikaela.hhtimer;
+package com.mikaela.hhtimer.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class dbHandler extends SQLiteOpenHelper {

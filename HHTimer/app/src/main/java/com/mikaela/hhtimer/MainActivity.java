@@ -16,7 +16,6 @@ import com.mikaela.hhtimer.service.CoreService;
 
 
 public class MainActivity extends AppCompatActivity implements Study.OnFragmentInteractionListener, Rest.OnFragmentInteractionListener {
-
     static boolean active = false;
     private long studySessionTime = 16000;
     private long breakSessionTime = 80000;

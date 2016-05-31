@@ -1,9 +1,11 @@
-package com.mikaela.hhtimer;
+package com.mikaela.hhtimer.Calendar;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.mikaela.hhtimer.R;
+import com.mikaela.hhtimer.Database.dbHandler;
 
 public class ShowTimeContatiner extends AppCompatActivity {
     dbHandler datesOfDeadLines;
@@ -18,7 +20,7 @@ public class ShowTimeContatiner extends AppCompatActivity {
         ListView timeTable = (ListView) findViewById(R.id.timeTable);
         datesOfDeadLines = new dbHandler(this, null, null, 1);
         String[] eventlist = datesOfDeadLines.eventsToArray();
-        timeListItem itemList = new timeListItem(this, eventlist, datesOfDeadLines.getWorkRelatedTitles());
+        studyAssignmentAdapter itemList = new studyAssignmentAdapter(this, eventlist, datesOfDeadLines.getWorkRelatedTitles());
         timeTable.setAdapter(itemList);
 
     }

@@ -1,4 +1,4 @@
-package com.mikaela.hhtimer;
+package com.mikaela.hhtimer.Calendar;
 
 
 import android.content.Context;
@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.mikaela.hhtimer.R;
 
-class customAdapter extends ArrayAdapter {
 
-    customAdapter(Context context, String[] foods) {
+class titleOfAssignmentAdapter extends ArrayAdapter {
+
+    titleOfAssignmentAdapter(Context context, String[] foods) {
         super(context, R.layout.custom_row, foods);
     }
 

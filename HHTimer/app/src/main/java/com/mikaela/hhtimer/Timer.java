@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.lang.String;
 
@@ -142,13 +141,9 @@ public class Timer extends AppCompatActivity  {
         super.onStart();
         client.connect();
         Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Timer Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
+                Action.TYPE_VIEW,
+                "Timer Page",
                 Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
                 Uri.parse("android-app://com.mikaela.hhtimer/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
@@ -158,13 +153,9 @@ public class Timer extends AppCompatActivity  {
     public void onStop() {
         super.onStop();
         Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Timer Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
+                Action.TYPE_VIEW,
+                "Timer Page",
                 Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
                 Uri.parse("android-app://com.mikaela.hhtimer/http/host/path")
         );
         AppIndex.AppIndexApi.end(client, viewAction);

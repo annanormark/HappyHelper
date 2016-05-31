@@ -10,8 +10,6 @@ import android.widget.Button;
 import com.mikaela.hhtimer.service.CoreService;
 
 public class PopDoneStudy extends Activity {
-    Button appGo;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +27,8 @@ public class PopDoneStudy extends Activity {
             @Override
             public void onClick(View v) {
                 //App block stops
-
                 finish();
             }
         });
     }
-
 }

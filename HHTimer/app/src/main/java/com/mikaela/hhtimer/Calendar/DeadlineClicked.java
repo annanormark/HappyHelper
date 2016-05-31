@@ -1,4 +1,4 @@
-package com.mikaela.hhtimer.util;
+package com.mikaela.hhtimer.Calendar;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mikaela.hhtimer.R;
-import com.mikaela.hhtimer.dbHandler;
+import com.mikaela.hhtimer.Database.dbHandler;
 
 public class DeadlineClicked extends AppCompatActivity {
     String productName;

@@ -1,4 +1,4 @@
-package com.mikaela.hhtimer;
+package com.mikaela.hhtimer.Calendar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,8 @@ import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.CalendarDayEvent;
-import com.mikaela.hhtimer.util.DeadlineClicked;
+import com.mikaela.hhtimer.R;
+import com.mikaela.hhtimer.Database.dbHandler;
 
 import java.util.Date;
 import java.util.List;
@@ -50,44 +51,44 @@ public class Calendar extends AppCompatActivity {
         refreshCalendar();
         Cal.invalidate();
 
-        /***********Sets listener for what happens when a new date is clicked in the calendar***************/
+        /*** Sets listener for what happens when a new date is clicked in the calendar ***/
         Cal.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
                 selectedDate = dateClicked;
 
-                ListAdapter adapter = new customAdapter(getBaseContext(), datesOfDeadLines.getTitles(dateClicked.getTime()));
+                //Show events in this dates
+                ListAdapter adapter = new titleOfAssignmentAdapter(getBaseContext(), datesOfDeadLines.getTitles(dateClicked.getTime()));
                 assert eventList != null;
                 eventList.setAdapter(adapter);
 
+                /*** When event is clicked in list ***/
                 eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent i = new Intent(context, DeadlineClicked.class);
+                        //Finds clicked item
                         Object o = eventList.getItemAtPosition(position);
                         String productname = (String) o;
+
+                        //Start menu of choices
+                        Intent i = new Intent(context, DeadlineClicked.class);
                         i.putExtra("event", productname);
                         startActivity(i);
                         refreshCalendar();
                     }
                 });
-
-
             }
 
+            //Does nothing important here, must exist
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
-                //  actionBar.setTitle(dateFormatForMonth.format(firstDayOfNewMonth));
                 int thisMonth = firstDayOfNewMonth.getMonth();
                 tex.setText(months[thisMonth]);
             }
         });
-
-
-
     }
 
-    /*************** clicked button "add event", starts activity "makeDeadLine" *****************/
+    /*** clicked button "add event", starts activity "makeDeadLine" ***/
     public void addDeadLine(View view){
         Context context = getApplicationContext();
         if (selectedDate==null) {
@@ -99,9 +100,9 @@ public class Calendar extends AppCompatActivity {
         i.putExtra("Time", selectedDate);
         startActivity(i);
         refreshCalendar();
-
     }
 
+    /*** Refreshes the calendarview ***/
     private void refreshCalendar(){
         if(Cal != null) {
             Cal.drawSmallIndicatorForEvents(true);
@@ -113,16 +114,15 @@ public class Calendar extends AppCompatActivity {
         }
     }
 
+    /*** On button klicked "Planner" ***/
     public void showWork(View view){
         Intent i = new Intent(this, ShowTimeContatiner.class);
         startActivity(i);
     }
 
     @Override
-    public void onResume()
-    {  // After a pause OR at startup
+    public void onResume() {
         super.onResume();
         refreshCalendar();
-        //Refresh your stuff here
     }
 }

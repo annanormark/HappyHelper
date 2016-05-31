@@ -17,7 +17,6 @@ import java.util.Random;
 
 
 public class GifView extends View {
-
     private InputStream gifInputStream;
     private Movie gifMovie;
     private int movieWidth, movieHeight;
@@ -28,32 +27,28 @@ public class GifView extends View {
     public GifView(Context context){
         super(context);
         init(context);
-
     }
 
     public GifView(Context context, AttributeSet attrs){
         super(context);
         init(context);
-
     }
 
     public GifView(Context context, AttributeSet attrs, int defStyleAttr){
         super(context);
         init(context);
-
     }
 
     private void init(Context context){
         setFocusable(true);
-
 
         DisplayMetrics metrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
        if(metrics.widthPixels < 900) {
            gifInputStream = context.getResources().openRawResource(+R.drawable.ogonliten);
-
-       }else {
+       }
+       else {
            gifInputStream = context.getResources().openRawResource(+R.drawable.e);
        }
 
@@ -61,9 +56,6 @@ public class GifView extends View {
         movieWidth = gifMovie.width();
         movieHeight = gifMovie.height();
         movieDuration = gifMovie.duration();
-
-
-
 
     }
 
@@ -84,9 +76,6 @@ public class GifView extends View {
     }
 
     protected void onDraw(Canvas canvas){
-
-
-
         long now = SystemClock.uptimeMillis();
 
         if(movieStart == 0){
@@ -97,16 +86,12 @@ public class GifView extends View {
             int dur = gifMovie.duration();
             if(dur == 0){
                 dur = 10000;
-
             }
 
             int relTime = (int)((now - movieStart) % dur);
             gifMovie.setTime(relTime);
-
             gifMovie.draw(canvas, 0, 0);
             invalidate();
-
         }
-
     }
 }

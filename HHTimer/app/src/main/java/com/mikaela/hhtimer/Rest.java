@@ -55,8 +55,6 @@ public class Rest extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
         View view = inflater.inflate(R.layout.resttime, container, false);
 
         start = (Button) view.findViewById(R.id.startBtn);
@@ -66,29 +64,19 @@ public class Rest extends Fragment {
         long seconds = (int) (startT / 1000) % 60 ;
 
         startT = Lis.getTimeRest();
-        //text.setText("0" + minutes + ":0" + seconds);
         setTimerText();
-
-
 
         start.setOnClickListener(new View.OnClickListener() {
 
                                      @Override
                                      public void onClick(View v) {
-
                                          Intent intent = new Intent(getActivity(), Pop.class);
                                          startActivity(intent);
 
-
                                          new CountDownTimer(startT, 1000) {
-
-
                                              public void onTick(long millisUntilFinished) {
-
-
                                                  start.setClickable(false);
                                                  start.setVisibility(View.INVISIBLE);
-                                                 //long remindSecs = millisUntilFinished / (long) 1000;
                                                  text.setText("" + String.format("%02d:%02d",
                                                          TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
                                                          TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
@@ -96,7 +84,6 @@ public class Rest extends Fragment {
                                              }
 
                                              public void onFinish() {
-
                                                  /*** Makes phone vibrate ***/
                                                  Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                                                  v.vibrate(1000);
@@ -118,26 +105,19 @@ public class Rest extends Fragment {
 
                                              }
                                          }.start();
-
-
                                      }
-
                                  }
-
         );
 
         return view;
-
     }
 
     private void setTimerText(){
         long minutes = (int) ((startT / (1000*60)) % 60);
         long seconds = (int) (startT / 1000) % 60 ;
-
         text.setText("0" + minutes + ":0" + seconds);
-
-
     }
+
     public  void setTimer(int time){
         this.startT = time;
         setTimerText();

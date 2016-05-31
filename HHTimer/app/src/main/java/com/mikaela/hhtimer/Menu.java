@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.mikaela.hhtimer.Calendar.Calendar;
 import com.mikaela.hhtimer.appBlock.AppList;
 import com.mikaela.hhtimer.appBlock.Why;
 import com.mikaela.hhtimer.service.CoreService;
@@ -18,7 +19,6 @@ import com.mikaela.hhtimer.util.BlockUtils;
 import com.mikaela.hhtimer.util.TopActivityUtils;
 
 public class Menu extends Activity {
-
     Button about;
     Button timerbtn;
     Button calendarBtn;
@@ -39,24 +39,19 @@ public class Menu extends Activity {
                 startActivity(i);
             }
 
-
         });
 
         timerbtn = (Button) findViewById(R.id.TimerBtn);
         timerbtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Menu.this, Timer.class);
                 startActivity(i);
             }
-
-
         });
 
         calendarBtn = (Button) findViewById(R.id.CalendarBtn);
         calendarBtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Menu.this, Calendar.class);
@@ -125,6 +120,5 @@ public class Menu extends Activity {
                     }
                 })
                 .show();
-
     }
 }

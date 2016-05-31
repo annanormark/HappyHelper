@@ -1,4 +1,4 @@
-package com.mikaela.hhtimer;
+package com.mikaela.hhtimer.Database;
 
 import java.security.PublicKey;
 import java.util.Date;

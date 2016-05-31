@@ -11,13 +11,11 @@ import android.widget.Button;
 import java.util.Random;
 
 public class Pop extends Activity {
-
     Button okbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         final Random rand = new Random();
         int randbak = rand.nextInt(3);
 
@@ -45,11 +43,8 @@ public class Pop extends Activity {
 
             @Override
             public void onClick(View v) {
-
                 finish();
-
             }
-
         });
     }
 }

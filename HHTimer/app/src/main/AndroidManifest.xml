@@ -49,12 +49,12 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".Calendar"
+            android:name=".Calendar.Calendar"
             android:label="@string/title_activity_calendar"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".makeDeadLine"
+            android:name=".Calendar.makeDeadLine"
             android:label="@string/title_activity_make_dead_line"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -85,11 +85,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".util.DeadlineClicked"
+            android:name=".Calendar.DeadlineClicked"
             android:label="@string/title_activity_deadline_clicked"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ShowTimeContatiner"
+            android:name=".Calendar.ShowTimeContatiner"
             android:label="@string/title_activity_show_time_contatiner"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>

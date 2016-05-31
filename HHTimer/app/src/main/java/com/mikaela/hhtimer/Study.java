@@ -38,8 +38,7 @@ public interface OnFragmentInteractionListener{
         super.onAttach(activity);
         try{
             Lis = (OnFragmentInteractionListener) activity;
-        }
-        catch (ClassCastException e) {
+        } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString());
         }
     }
@@ -50,13 +49,8 @@ public interface OnFragmentInteractionListener{
 
         start = (Button) view.findViewById(R.id.RedButton);
         text = (TextView) view.findViewById(R.id.RedTextTime);
-       // start.setVisibility(View.INVISIBLE);
-
-      // long minutes = (int) ((startT / (1000*60)) % 60);
-       // long seconds = (int) (startT / 1000) % 60 ;
 
         startT = Lis.getTime();
-        //text.setText("0" + minutes + ":0" + seconds);
         setTimerText();
 
         start.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +63,6 @@ public interface OnFragmentInteractionListener{
                                              public void onTick(long millisUntilFinished) {
                                                  start.setClickable(false);
                                                  start.setVisibility(View.INVISIBLE);
-                                                 //long remindSecs = millisUntilFinished / (long) 1000;
-                                                 //setTimerText(millisUntilFinished);
                                                  text.setText("" + String.format("%02d:%02d",
                                                          TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
                                                          TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
@@ -95,16 +87,10 @@ public interface OnFragmentInteractionListener{
                                                  FragmentManager fragmentManager = getFragmentManager();
                                                  Rest rest = new Rest();
                                                  try {
-                                                    // fragmentManager.popBackStack();
                                                      fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commit();
                                                  }catch(IllegalStateException e){
                                                      fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commitAllowingStateLoss();
                                                  }
-
-                                                 //App block stops
-                                                 //getActivity().stopService(new Intent(getActivity(), CoreService.class));
-
-
                                              }
                                          }.start();
                                      }
@@ -116,11 +102,9 @@ public interface OnFragmentInteractionListener{
     private void setTimerText(){
         long minutes = (int) ((startT / (1000*60)) % 60);
         long seconds = (int) (startT / 1000) % 60 ;
-
         text.setText("0" + minutes + ":0" + seconds);
-
-
     }
+
     public  void setTimer(int time){
         this.startT = time;
         setTimerText();
