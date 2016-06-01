@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Hey, you still have some studytime left..."
+        android:text="Hey, you still have some study time left..."
         android:id="@+id/warningText"
         android:textColor="#3D3F40"
         android:fontFamily="sans-serif-thin"
