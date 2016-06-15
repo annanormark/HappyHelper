@@ -1,12 +1,16 @@
 package com.mikaela.hhtimer;
 import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +72,7 @@ public interface OnFragmentInteractionListener{
                                                          TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                                                                  TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
 
-                                                //App block starts
+                                                 //App block starts
                                                  getActivity().startService(new Intent(getActivity(), CoreService.class));
                                              }
 
@@ -87,10 +91,31 @@ public interface OnFragmentInteractionListener{
                                                  FragmentManager fragmentManager = getFragmentManager();
                                                  Rest rest = new Rest();
                                                  try {
+<<<<<<< Updated upstream
+=======
+                                                     // fragmentManager.popBackStack();
+>>>>>>> Stashed changes
                                                      fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commit();
-                                                 }catch(IllegalStateException e){
+                                                 } catch (IllegalStateException e) {
                                                      fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commitAllowingStateLoss();
                                                  }
+<<<<<<< Updated upstream
+=======
+
+
+
+
+                                                 NotificationCompat.Builder mBuilder =
+                                                         new NotificationCompat.Builder()
+                                                                 .setSmallIcon(R.drawable.e)
+                                                                 .setContentTitle("My notification")
+                                                                 .setContentText("Hello World!");
+
+                                                 //App block stops
+                                                 //getActivity().stopService(new Intent(getActivity(), CoreService.class));
+
+
+>>>>>>> Stashed changes
                                              }
                                          }.start();
                                      }
