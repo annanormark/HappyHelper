@@ -56,8 +56,7 @@ public class Timer extends AppCompatActivity  {
         studyNumber.setText("" + studySes + " min");
         breakNumber.setText("" + breakSes + " min");
         totalNumber.setText("" + total + " min");
-
-
+        
         /*** Sets seekbars ***/
         studySession.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

@@ -76,7 +76,7 @@
     <string name="dialog_message">HappyHelper needs user access!</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_no">Hell no!</string>
-    <string name="dialog_title">User Access required</string>
+    <string name="dialog_title">User access required</string>
 
     <string name="permission_ok">Permission granted</string>
     <string name="permission_error">Permission denied</string>

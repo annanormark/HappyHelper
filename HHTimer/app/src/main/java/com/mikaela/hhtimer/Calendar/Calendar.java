@@ -28,55 +28,28 @@ public class Calendar extends AppCompatActivity {
     String[] dayColNames ={"M", "T", "O", "T", "F", "S", "S"};
     CompactCalendarView Cal = null;
     ArrayAdapter adapter;
+    TextView calTex;
+    ListView eventList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
-        final Context context = getApplicationContext();
-        final TextView tex = (TextView) findViewById(R.id.annasText);
-        Cal = (CompactCalendarView) findViewById(R.id.Cal);
-        datesOfDeadLines = new dbHandler(this, null, null,1);
-        final ListView eventList = (ListView) findViewById(R.id.eventList);
-
-        // Set text on top of Calendar
-        assert tex != null;
-        tex.setText("");
-        int thisMonth = java.util.Calendar.getInstance(Locale.getDefault()).getTime().getMonth();
-        tex.setText(months[thisMonth]);
-
-        //Makes the Calendar
-        assert Cal != null;
-        Cal.setCurrentDate(java.util.Calendar.getInstance(Locale.getDefault()).getTime());
-        Cal.setDayColumnNames(dayColNames);
-        refreshCalendar();
-        Cal.invalidate();
+        getView();
+        setTextOfCal();
+        configCalendar();
 
         /*** Sets listener for what happens when a new date is clicked in the calendar ***/
         Cal.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
                 selectedDate = dateClicked;
+                showEventsOfDate(eventList);
 
-                //Show events in this dates
-                adapter = new titleOfAssignmentAdapter(getBaseContext(), datesOfDeadLines.getTitles(dateClicked.getTime()));
-                assert eventList != null;
-                eventList.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
-                /*** When event is clicked in list ***/
+                /*** TODO When event is clicked in list ***/
              /*   eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        //Finds clicked item
-                        Object o = eventList.getItemAtPosition(position);
-                        String productname = (String) o;
-
-                        //Start menu of choices
-                        Intent i = new Intent(context, DeadlineClicked.class);
-                        i.putExtra("event", productname);
-                        startActivity(i);
-                        refreshCalendar();
+                        eventClicked(position, eventList);
                     }
                 });*/
 
@@ -84,14 +57,7 @@ public class Calendar extends AppCompatActivity {
                 eventList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                        Object o = eventList.getItemAtPosition(position);
-                        String productName = (String) o;
-                        datesOfDeadLines.deleteProduct(productName);
-                        Toast.makeText(Calendar.this, "Deleted " + productName, Toast.LENGTH_SHORT).show();
-                        Cal.removeAllEvents();
-                        refreshCalendar();
-                        adapter = new titleOfAssignmentAdapter(getBaseContext(), datesOfDeadLines.getTitles(selectedDate.getTime()));
-                        eventList.setAdapter(adapter);
+                        deleteEvent(position, eventList);
                         return true;
                     }
                 });
@@ -101,9 +67,64 @@ public class Calendar extends AppCompatActivity {
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 int thisMonth = firstDayOfNewMonth.getMonth();
-                tex.setText(months[thisMonth]);
+                calTex.setText(months[thisMonth]);
             }
         });
+    }
+
+    public void getView(){
+        setContentView(R.layout.activity_calendar);
+        Cal = (CompactCalendarView) findViewById(R.id.Cal);
+        assert Cal != null;
+        datesOfDeadLines = new dbHandler(this, null, null,1);
+        final ListView eventList = (ListView) findViewById(R.id.eventList);
+        assert eventList != null;
+
+    }
+
+    public void configCalendar(){
+        Cal.setCurrentDate(java.util.Calendar.getInstance(Locale.getDefault()).getTime());
+        Cal.setDayColumnNames(dayColNames);
+        refreshCalendar();
+        Cal.invalidate();
+    }
+
+    public void setTextOfCal(){
+        final TextView calText = (TextView) findViewById(R.id.annasText);
+        assert calText != null;
+        calText.setText("");
+        int thisMonth = java.util.Calendar.getInstance(Locale.getDefault()).getTime().getMonth();
+        calText.setText(months[thisMonth]);
+    }
+
+    public void showEventsOfDate(ListView eventList){
+        adapter = new titleOfAssignmentAdapter(getBaseContext(), datesOfDeadLines.getTitles(selectedDate.getTime()));
+        assert eventList != null;
+        eventList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void eventClicked(int position, ListView eventList){
+        //Finds clicked item
+        Object o = eventList.getItemAtPosition(position);
+        String productname = (String) o;
+
+        //Start menu of choices
+        Intent i = new Intent(this, DeadlineClicked.class);
+        i.putExtra("event", productname);
+        startActivity(i);
+        refreshCalendar();
+    }
+
+    public void deleteEvent(int position, ListView eventList){
+        Object o = eventList.getItemAtPosition(position);
+        String productName = (String) o;
+        datesOfDeadLines.deleteProduct(productName);
+        Toast.makeText(Calendar.this, "Deleted " + productName, Toast.LENGTH_SHORT).show();
+        Cal.removeAllEvents();
+        refreshCalendar();
+        adapter = new titleOfAssignmentAdapter(getBaseContext(), datesOfDeadLines.getTitles(selectedDate.getTime()));
+        eventList.setAdapter(adapter);
     }
 
     /*** clicked button "add event", starts activity "makeDeadLine" ***/

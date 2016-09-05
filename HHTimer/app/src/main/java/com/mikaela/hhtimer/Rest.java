@@ -2,24 +2,16 @@ package com.mikaela.hhtimer;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Chronometer;
-import android.widget.ExpandableListView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
 
@@ -51,7 +43,8 @@ public class Rest extends Fragment {
         }
     }
 
-
+    //TODO make fragment use sharedPrefrences instead of using interface
+    //TODO make an common h-file for code in study and rest, much similar code
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

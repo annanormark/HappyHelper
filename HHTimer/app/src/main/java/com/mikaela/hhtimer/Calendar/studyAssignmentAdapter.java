@@ -33,20 +33,12 @@ public class studyAssignmentAdapter extends ArrayAdapter {
         LayoutInflater Inflater = LayoutInflater.from(getContext());
         View customView = Inflater.inflate(R.layout.time_list, parent, false);
 
-        java.util.Calendar c2 = Calendar.getInstance();
-        c2.setTimeInMillis(cur.getLong(cur.getColumnIndex(COLUMN_DATE)));
         TextView assTitle = (TextView) customView.findViewById(R.id.Titel);
         TextView assTime = (TextView) customView.findViewById(R.id.Time);
         Cursor cursor = datesOfDeadLines.getWorkRelatedTitles();
         cursor.move(position);
 
-        if(c2.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
-            assTime.setText("" + 0 + " h");
-        else if(c2.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
-            assTime.setText("" + 0 + " h");
-        else
-            assTime.setText("" + cursor.getInt(cursor.getColumnIndex(COLUMN_WORK_PER_DAY)) + " h");
-
+        assTime.setText("" + cursor.getInt(cursor.getColumnIndex(COLUMN_WORK_PER_DAY)) + " h");
         assTime.setText("" + cursor.getInt(cursor.getColumnIndex(COLUMN_WORK_PER_DAY)) + " h");
         assTitle.setText(cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCTNAME)));
 

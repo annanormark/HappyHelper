@@ -1,10 +1,6 @@
 package com.mikaela.hhtimer;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentManager;
@@ -20,9 +16,7 @@ import android.app.Activity;
 
 import com.mikaela.hhtimer.service.CoreService;
 
-
 import java.util.concurrent.TimeUnit;
-
 
 public class Study extends Fragment {
     private OnFragmentInteractionListener Lis;
@@ -46,7 +40,7 @@ public interface OnFragmentInteractionListener{
             throw new ClassCastException(activity.toString());
         }
     }
-
+//TODO make fragment use sharedPrefrences instead of using interface
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.studytime, container, false);
@@ -65,63 +59,61 @@ public interface OnFragmentInteractionListener{
 
 
                                              public void onTick(long millisUntilFinished) {
-                                                 start.setClickable(false);
-                                                 start.setVisibility(View.INVISIBLE);
-                                                 text.setText("" + String.format("%02d:%02d",
-                                                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
-                                                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                                                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
-
+                                                 configureTimerOn(millisUntilFinished);
                                                  //App block starts
                                                  getActivity().startService(new Intent(getActivity(), CoreService.class));
                                              }
 
                                              public void onFinish() {
-                                                 /*** Makes phone vibrate ***/
-                                                 Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                                                 v.vibrate(1000);
+                                                 makePhoneVibrate();
                                                  Lis.addTime(startT);
-
-                                                 /*** Makes application appear in foreground ***/
-                                                 Intent intent = new Intent(getActivity(), NotificationClass.class);
-                                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                 startActivity(intent);
-
-                                                 /*** Changes to break-session ***/
-                                                 FragmentManager fragmentManager = getFragmentManager();
-                                                 Rest rest = new Rest();
-                                                 try {
-<<<<<<< Updated upstream
-=======
-                                                     // fragmentManager.popBackStack();
->>>>>>> Stashed changes
-                                                     fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commit();
-                                                 } catch (IllegalStateException e) {
-                                                     fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commitAllowingStateLoss();
-                                                 }
-<<<<<<< Updated upstream
-=======
-
-
-
+                                                 putInFG();
+                                                 startBreak();
 
                                                  NotificationCompat.Builder mBuilder =
-                                                         new NotificationCompat.Builder()
+                                                         new NotificationCompat.Builder(getContext()) //Added getContext(), was an error before, assumed it was supposed o be there /A
                                                                  .setSmallIcon(R.drawable.e)
                                                                  .setContentTitle("My notification")
                                                                  .setContentText("Hello World!");
 
                                                  //App block stops
                                                  //getActivity().stopService(new Intent(getActivity(), CoreService.class));
-
-
->>>>>>> Stashed changes
                                              }
                                          }.start();
                                      }
                                  }
         );
         return view;
+    }
+
+    private void configureTimerOn(long timeUntililFinished){
+        start.setClickable(false);
+        start.setVisibility(View.INVISIBLE);
+        text.setText("" + String.format("%02d:%02d",
+                TimeUnit.MILLISECONDS.toMinutes(timeUntililFinished),
+                TimeUnit.MILLISECONDS.toSeconds(timeUntililFinished) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timeUntililFinished))));
+    }
+
+    public void makePhoneVibrate(){
+        Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(1000);
+    }
+
+    public void putInFG(){
+        Intent intent = new Intent(getActivity(), NotificationClass.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    public void startBreak(){
+        FragmentManager fragmentManager = getFragmentManager();
+        Rest rest = new Rest();
+        try {
+            fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commit();
+        } catch (IllegalStateException e) {
+            fragmentManager.beginTransaction().replace(R.id.mainContainer, rest).commitAllowingStateLoss();
+        }
     }
 
     private void setTimerText(){
